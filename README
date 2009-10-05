@@ -1,0 +1,26 @@
+Summary
+-----------
+
+Python bindings for the Lightroom database.
+
+More information available at http://code.google.com/p/openroom.
+
+Author:  Brian Zimmer <bzimmer@ziclix.com>
+Version: 0.1
+Date:    01-16-2009
+
+Requirements
+------------
+
+- Python 2.5+
+- sqlalchemy 5.0+
+
+License
+-------
+
+Released under the MIT License.
+
+Feedback
+--------
+
+Send patches, issues and comments to bzimmer@ziclix.com.

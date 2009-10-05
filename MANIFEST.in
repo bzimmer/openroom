@@ -1,0 +1,6 @@
+include *.cfg
+include README
+include LICENSE
+include ChangeLog
+include openroomx.py
+include doc/html/*

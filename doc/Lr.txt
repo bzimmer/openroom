@@ -1,0 +1,433 @@
+sqlite> .schema
+CREATE TABLE Adobe_AdditionalMetadata (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    additionalInfoSet INTEGER NOT NULL DEFAULT 0,
+    embeddedXmp INTEGER NOT NULL DEFAULT 0,
+    externalXmpIsDirty INTEGER NOT NULL DEFAULT 0,
+    image INTEGER,
+    incrementalWhiteBalance INTEGER NOT NULL DEFAULT 0,
+    internalXmpDigest,
+    isRawFile INTEGER NOT NULL DEFAULT 0,
+    lastSynchronizedHash,
+    lastSynchronizedTimestamp NOT NULL DEFAULT -63113817600,
+    metadataPresetID,
+    metadataVersion INTEGER,
+    monochrome INTEGER NOT NULL DEFAULT 0,
+    xmp
+);
+CREATE TABLE Adobe_imageDevelopBeforeSettings (
+    id_local INTEGER PRIMARY KEY,
+    beforeDigest,
+    beforeHasDevelopAdjustments,
+    beforePresetID,
+    beforeText,
+    developSettings INTEGER
+);
+CREATE TABLE Adobe_imageDevelopSettings (
+    id_local INTEGER PRIMARY KEY,
+    allowFastRender INTEGER,
+    beforeSettingsIDCache,
+    croppedHeight,
+    croppedWidth,
+    digest,
+    fileHeight,
+    fileWidth,
+    grayscale INTEGER,
+    hasDevelopAdjustments INTEGER,
+    hasDevelopAdjustmentsEx,
+    historySettingsID,
+    image INTEGER,
+    settingsID,
+    snapshotID,
+    text,
+    validatedForVersion,
+    whiteBalance
+);
+CREATE TABLE Adobe_imageProperties (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    image INTEGER,
+    propertiesString
+);
+CREATE TABLE Adobe_images (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    aspectRatioCache NOT NULL DEFAULT -1,
+    captureTime,
+    colorLabels NOT NULL DEFAULT '',
+    copyCreationTime NOT NULL DEFAULT -63113817600,
+    copyName,
+    developSettingsIDCache,
+    fileFormat NOT NULL DEFAULT 'unset',
+    fileHeight,
+    fileWidth,
+    hasMissingSidecars INTEGER,
+    masterImage INTEGER,
+    orientation,
+    originalCaptureTime,
+    originalRootEntity INTEGER,
+    panningDistanceH,
+    panningDistanceV,
+    pick NOT NULL DEFAULT 0,
+    positionInFolder NOT NULL DEFAULT 'z',
+    printSharpening,
+    propertiesCache,
+    pyramidIDCache,
+    rating,
+    rootFile INTEGER NOT NULL DEFAULT 0,
+    sidecarStatus,
+    stackIsCollapsed INTEGER NOT NULL DEFAULT 0,
+    stackParent INTEGER DEFAULT 0,
+    stackParent____aspectRatioCache,
+    stackParent____captureTime,
+    stackParent____colorLabels,
+    stackParent____fileFormat,
+    stackParent____pick,
+    stackParent____positionInFolder,
+    stackParent____rating,
+    stackParent____touchCount,
+    stackParent____touchTime,
+    stackParent_extension,
+    stackParent_fileName,
+    stackPosition NOT NULL DEFAULT 0,
+    touchCount NOT NULL DEFAULT 0,
+    touchTime NOT NULL DEFAULT 0
+);
+CREATE TABLE Adobe_libraryImageDevelopHistoryStep (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    dateCreated INTEGER,
+    digest,
+    hasDevelopAdjustments,
+    image INTEGER,
+    name,
+    relValueString,
+    text,
+    valueString
+);
+CREATE TABLE Adobe_libraryImageDevelopSnapshot (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    digest,
+    hasDevelopAdjustments,
+    image INTEGER,
+    locked,
+    name,
+    snapshotID,
+    text
+);
+CREATE TABLE Adobe_namedIdentityPlate (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    description,
+    identityPlate,
+    identityPlateHash,
+    moduleFont,
+    moduleSelectedTextColor,
+    moduleTextColor
+);
+CREATE TABLE Adobe_previewCachePyramidLevels (
+    id_local INTEGER PRIMARY KEY,
+    dataLength,
+    dataOffset,
+    height,
+    kind,
+    lastAccess,
+    levelUUID,
+    pyramid INTEGER NOT NULL DEFAULT 0,
+    thumbCacheID,
+    width
+);
+CREATE TABLE Adobe_previewCachePyramids (
+    id_local INTEGER PRIMARY KEY,
+    colorProfile,
+    couldBeBigger,
+    croppedHeight,
+    croppedWidth,
+    fileTimeStamp,
+    fingerprint,
+    histogramCacheID,
+    histogramLength,
+    histogramOffset,
+    image NOT NULL DEFAULT '',
+    owners,
+    quality,
+    relativeDataPath,
+    rootLevelIDCache,
+    settingsDigest NOT NULL DEFAULT ''
+);
+CREATE TABLE Adobe_variables (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    name,
+    value
+);
+CREATE TABLE Adobe_variablesTable (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    name,
+    type,
+    value NOT NULL DEFAULT ''
+);
+CREATE TABLE AgFolderContent (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    containingFolder INTEGER NOT NULL DEFAULT 0,
+    content,
+    name,
+    owningModule
+);
+CREATE TABLE AgHarvestedExifMetadata (
+    id_local INTEGER PRIMARY KEY,
+    image INTEGER,
+    aperture INTEGER,
+    cameraModelRef INTEGER,
+    cameraSNRef INTEGER,
+    dateDay INTEGER,
+    dateMonth INTEGER,
+    dateYear INTEGER,
+    flashFired INTEGER,
+    focalLength INTEGER,
+    hasGPS INTEGER,
+    isoSpeedRating INTEGER,
+    lensRef INTEGER,
+    shutterSpeed INTEGER
+);
+CREATE TABLE AgHarvestedIptcMetadata (
+    id_local INTEGER PRIMARY KEY,
+    image INTEGER,
+    cityRef INTEGER,
+    copyrightState INTEGER,
+    countryRef INTEGER,
+    creatorRef INTEGER,
+    jobIdentifierRef INTEGER,
+    locationRef INTEGER,
+    stateRef INTEGER
+);
+CREATE TABLE AgHarvestedMetadataWorklist (
+    id_local INTEGER PRIMARY KEY,
+    taskID UNIQUE NOT NULL DEFAULT '',
+    taskStatus NOT NULL DEFAULT 'pending',
+    whenPosted NOT NULL DEFAULT ''
+);
+CREATE TABLE AgInternedExifCameraModel (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgInternedExifCameraSN (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgInternedExifLens (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgInternedIptcCity (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgInternedIptcCountry (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgInternedIptcCreator (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgInternedIptcJobIdentifier (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgInternedIptcLocation (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgInternedIptcState (
+    id_local INTEGER PRIMARY KEY,
+    searchIndex,
+    value
+);
+CREATE TABLE AgLibraryContent (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    containingTag INTEGER,
+    content,
+    name,
+    owningModule
+);
+CREATE TABLE AgLibraryFile (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    baseName NOT NULL DEFAULT '',
+    errorMessage,
+    errorTime,
+    extension NOT NULL DEFAULT '',
+    externalModTime,
+    folder INTEGER NOT NULL DEFAULT 0,
+    idx_filename NOT NULL DEFAULT '',
+    importHash,
+    lc_idx_filename NOT NULL DEFAULT '',
+    lc_idx_filenameExtension NOT NULL DEFAULT '',
+    md5,
+    modTime,
+    originalFilename NOT NULL DEFAULT '',
+    robustRepresentation,
+    sidecarExtensions
+);
+CREATE TABLE AgLibraryFolder (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    pathFromRoot NOT NULL DEFAULT '',
+    robustRepresentation,
+    rootFolder INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE AgLibraryImageXMPUpdater (
+    id_local INTEGER PRIMARY KEY,
+    taskID UNIQUE NOT NULL DEFAULT '',
+    taskStatus NOT NULL DEFAULT 'pending',
+    whenPosted NOT NULL DEFAULT ''
+);
+CREATE TABLE AgLibraryKeyword (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    dateCreated NOT NULL DEFAULT '',
+    genealogy NOT NULL DEFAULT '',
+    imageCountCache DEFAULT -1,
+    includeOnExport INTEGER NOT NULL DEFAULT 1,
+    includeParents INTEGER NOT NULL DEFAULT 1,
+    includeSynonyms INTEGER NOT NULL DEFAULT 1,
+    lastApplied,
+    lc_name,
+    name,
+    parent INTEGER
+);
+CREATE TABLE AgLibraryKeywordCooccurrence (
+    id_local INTEGER PRIMARY KEY,
+    tag1 INTEGER NOT NULL DEFAULT 0,
+    tag2 INTEGER NOT NULL DEFAULT 0,
+    value INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE AgLibraryKeywordImage (
+    id_local INTEGER PRIMARY KEY,
+    image INTEGER NOT NULL DEFAULT 0,
+    tag INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE AgLibraryKeywordPopularity (
+    id_local INTEGER PRIMARY KEY,
+    occurrences INTEGER NOT NULL DEFAULT 0,
+    popularity INTEGER NOT NULL DEFAULT 0,
+    tag INTEGER UNIQUE NOT NULL DEFAULT 0
+);
+CREATE TABLE AgLibraryKeywordSynonym (
+    id_local INTEGER PRIMARY KEY,
+    keyword INTEGER NOT NULL DEFAULT 0,
+    lc_name,
+    name
+);
+CREATE TABLE AgLibraryRootFolder (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    absolutePath UNIQUE NOT NULL DEFAULT '',
+    name NOT NULL DEFAULT '',
+    relativePathFromCatalog
+);
+CREATE TABLE AgLibraryTag (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    changeEpoch INTEGER,
+    dateCreated NOT NULL DEFAULT '',
+    flattenedParams,
+    folderInfoCache,
+    genealogy NOT NULL DEFAULT '',
+    imageCountCache DEFAULT -1,
+    kindName NOT NULL DEFAULT '',
+    lastApplied,
+    lc_name,
+    name,
+    parent INTEGER,
+    sortDirection,
+    sortOrder
+);
+CREATE TABLE AgLibraryTagImage (
+    id_local INTEGER PRIMARY KEY,
+    flattenedParams,
+    image INTEGER NOT NULL DEFAULT 0,
+    pick NOT NULL DEFAULT 0,
+    positionInCollection NOT NULL DEFAULT 'z',
+    tag INTEGER NOT NULL DEFAULT 0,
+    tagKind NOT NULL DEFAULT ''
+);
+CREATE TABLE AgMRULists (
+    id_local INTEGER PRIMARY KEY,
+    listID NOT NULL DEFAULT '',
+    timestamp NOT NULL DEFAULT 0,
+    value NOT NULL DEFAULT ''
+);
+CREATE TABLE AgMetadataSearchIndex (
+    id_local INTEGER PRIMARY KEY,
+    exifSearchIndex NOT NULL DEFAULT '',
+    image INTEGER,
+    iptcSearchIndex NOT NULL DEFAULT '',
+    otherSearchIndex NOT NULL DEFAULT '',
+    searchIndex NOT NULL DEFAULT ''
+);
+CREATE TABLE AgPhotoProperty (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    dataType,
+    internalValue,
+    photo INTEGER NOT NULL DEFAULT 0,
+    propertySpec INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE AgPhotoPropertyArrayElement (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    arrayIndex NOT NULL DEFAULT '',
+    dataType,
+    internalValue,
+    photo INTEGER NOT NULL DEFAULT 0,
+    propertySpec INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE AgPhotoPropertySpec (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    flattenedAttributes,
+    key NOT NULL DEFAULT '',
+    pluginVersion NOT NULL DEFAULT '',
+    sourcePlugin NOT NULL DEFAULT '',
+    userVisibleName
+);
+CREATE TABLE AgPreviewCachePyramidDeletionList (
+    id_local INTEGER PRIMARY KEY,
+    taskID UNIQUE NOT NULL DEFAULT '',
+    taskStatus NOT NULL DEFAULT 'pending',
+    whenPosted NOT NULL DEFAULT ''
+);
+CREATE TABLE AgSearchablePhotoProperty (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    dataType,
+    internalValue,
+    lc_idx_internalValue,
+    photo INTEGER NOT NULL DEFAULT 0,
+    propertySpec INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE AgSearchablePhotoPropertyArrayElement (
+    id_local INTEGER PRIMARY KEY,
+    id_global UNIQUE NOT NULL,
+    arrayIndex NOT NULL DEFAULT '',
+    dataType,
+    internalValue,
+    lc_idx_internalValue,
+    photo INTEGER NOT NULL DEFAULT 0,
+    propertySpec INTEGER NOT NULL DEFAULT 0
+);
